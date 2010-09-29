@@ -23,3 +23,12 @@ ARM4SMP ARMV5SMP
 
 #define FLEXIBLE
 #include "../navienginebsp/ne1_tb/memmodel_bld.inf"
+
+// Build textshell image
+PRJ_EXTENSIONS
+start   extension       base/rom
+option  REE_TARGET      ne1_tb
+option  REE_DEFINES     WITH_FLEXIBLE_MM
+option  ROM_NAME        fne1_tb
+option  TYPE    tshell
+end
