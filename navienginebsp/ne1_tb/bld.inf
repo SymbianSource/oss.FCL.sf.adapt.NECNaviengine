@@ -126,13 +126,13 @@ end
 PRJ_MMPFILES
 hal/hal
 
-#endif // SMP
-
 // Build textshell image
 PRJ_EXTENSIONS
 start   extension       base/rom
 option  REE_TARGET      ne1_tb
 option  TYPE    tshell
 end
+
+#endif // SMP
 
 #endif // GCCXML
