@@ -92,8 +92,8 @@ soundsc_v2
 //exbusab
 enet
 resmanpsl
-sdcontroller
-sdcontroller_v2
+// sdcontroller    // - no mmc directory
+// sdcontroller_v2 // - no mmc directory
 i2s
 keypad
 rebootdrv
