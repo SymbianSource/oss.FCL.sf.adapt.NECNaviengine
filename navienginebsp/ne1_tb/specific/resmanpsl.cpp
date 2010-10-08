@@ -17,7 +17,6 @@
 */
 
 
-
 #include "resmanpsl.h"
 
 static DNE1_TBPowerResourceController TheController;
@@ -66,6 +65,65 @@ TInt DNE1_TBPowerResourceController::DoInitController()
     It creates an array to hold the static resource and also creates the resources and updates 
 	in the array. 
 	*/
+//C TSAI: this is to fit new virtual function prototype which uses RPointerArray
+TInt DNE1_TBPowerResourceController::DoRegisterStaticResources(RPointerArray<DStaticPowerResource>& aStaticResourceArray)
+	{
+	__KTRACE_OPT(KRESMANAGER, Kern::Printf("DNE1_TBPowerResourceController::DoRegisterStaticResources [SF4 new virtual function prototype]"));
+
+/** Macro definition to register resource */
+#define REGISTER_RESOURCE_RPOINTERARRAY(resource, resourceArray)						\
+	{																					\
+	pR = new resource();																\
+	if(!pR)																				\
+		{																				\
+		TUint resourceCount = (TUint) resourceArray.Count();							\
+		for(TUint count = 0; count < resourceCount; count++)							\
+			{																			\
+			delete resourceArray[count];												\
+			}																			\
+		resourceArray.Reset();															\
+		return KErrNoMemory;															\
+		}																				\
+	resourceArray.Append(pR);												\
+	}
+
+	DStaticPowerResource* pR = NULL;
+
+	//Note: RPointerArray itself only deal with pointers and doesn't delete objects when Close() or Reset()
+
+	/** Create I2S0 MCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S0MclkResource, aStaticResourceArray);
+	/** Create I2S1 MCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S1MclkResource, aStaticResourceArray);
+	/** Create I2S2 MCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S2MclkResource, aStaticResourceArray);
+	/** Create I2S3 MCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S3MclkResource, aStaticResourceArray);
+	/** Create I2S0 SCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S0SclkResource, aStaticResourceArray);
+	/** Create I2S1 SCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S1SclkResource, aStaticResourceArray);
+	/** Create I2S2 SCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S2SclkResource, aStaticResourceArray);
+	/** Create I2S3 SCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBI2S3SclkResource, aStaticResourceArray);
+	/** Create CSI0 clock resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBCSI0ClockResource, aStaticResourceArray);
+	/** Create CSI1 clock resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBCSI1ClockResource, aStaticResourceArray);
+	/** Create Display DCLK resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBDisplayDclkResource, aStaticResourceArray);
+	/** Create LCD resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBLcdResource, aStaticResourceArray);
+	/** Create Board Power resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBBoardPowerResource, aStaticResourceArray);
+	/** Create PCI clock mask enable resource and add to the static resource array */
+	REGISTER_RESOURCE_RPOINTERARRAY(DNE1_TBPCIClockResource, aStaticResourceArray);
+
+	return KErrNone;
+	}
+
+#if 0	//C TSAI: This is older function implementation (older virtual function prototype)
 TInt DNE1_TBPowerResourceController::DoRegisterStaticResources(DStaticPowerResource**& aStaticResourceArray, 
 																                 TUint16& aStaticResourceCount)
 	{
@@ -121,5 +179,7 @@ TInt DNE1_TBPowerResourceController::DoRegisterStaticResources(DStaticPowerResou
 
 	return KErrNone;
 	}
+
+#endif
 
 

@@ -81,7 +81,11 @@ class DNE1_TBPowerResourceController : public DPowerResourceController
 public:
 	DNE1_TBPowerResourceController();
 	TInt DoInitController(); 
-	TInt DoRegisterStaticResources(DStaticPowerResource**& aStaticResourceArray, TUint16& aStaticResourceCount);
+
+	//C TSAI: from SF4 PDK 1022, this virtual function prototype has changed, and need to re-write this function 
+	//to match the new function prototype
+	//TInt DoRegisterStaticResources(DStaticPowerResource**& aStaticResourceArray, TUint16& aStaticResourceCount);
+	TInt DoRegisterStaticResources(RPointerArray<DStaticPowerResource>& aStaticResourceArray);
 	};
 
 
