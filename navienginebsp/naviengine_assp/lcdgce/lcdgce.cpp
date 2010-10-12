@@ -264,7 +264,7 @@ TInt DDisplayPddNaviEng::CreateChannelSetup(TInt aUnit)
 			iLdd->iDisplayInfo.iPixelFormat = EUidPixelFormatRGB_888;
 			break;
 		case 32:
-			iLdd->iDisplayInfo.iPixelFormat = EUidPixelFormatARGB_8888;
+			iLdd->iDisplayInfo.iPixelFormat = EUidPixelFormatXRGB_8888;
 			break;
 		default:
 			iLdd->iDisplayInfo.iPixelFormat = EUidPixelFormatUnknown;
