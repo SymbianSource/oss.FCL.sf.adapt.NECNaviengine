@@ -89,4 +89,12 @@ REM Pick up NAND2 components if the ROM is built with -D _NAND2
 #define VFPHELPERS
 #endif
 
+#ifdef SYMBIAN_EXCLUDE_KEYMAP
+#undef SYMBIAN_EXCLUDE_KEYMAP
+#warning("SYMBIAN_EXCLUDE_KEYMAP should not be defined for miniGUI")
+
+#endif
+
+
 #endif // __NAVIENGINE_OBY__
+
