@@ -49,7 +49,7 @@ staticextension.h						SYMBIAN_OS_LAYER_PLATFORM_EXPORT_PATH(assp/naviengine/nke
 PRJ_MMPFILES
 kanaviengine
 dma
-dma_v2
+// dma_v2 - not supported in Symbian^3
 usbcc
 uart/uart.mmp
 uart/vserialkeyb.mmp

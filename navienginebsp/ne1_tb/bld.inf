@@ -87,7 +87,7 @@ key
 
 medlffs
 soundsc
-soundsc_v2
+// soundsc_v2 - no DMA v2 support in Symbian^3
 //epbus
 //exbusab
 enet
@@ -96,7 +96,7 @@ resmanpsl
 // sdcontroller_v2 // - no mmc directory
 i2s
 keypad
-rebootdrv
+// rebootdrv - needs rebootdrv.h, which is not yet contributed
 csi
 csi_ctrless
 
