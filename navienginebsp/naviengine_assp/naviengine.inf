@@ -50,7 +50,7 @@ PRJ_MMPFILES
 kanaviengine
 dma
 // dma_v2 - not supported in Symbian^3
-usbcc
+// usbcc  - no DMA v2 support in Symbian^3
 uart/uart.mmp
 uart/vserialkeyb.mmp
 uart/ubootldrkeyb.mmp
